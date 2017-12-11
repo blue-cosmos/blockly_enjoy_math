@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Enjoy Math</title>
+
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <link href="css/mycss.css" rel="stylesheet" />
+    <link href="css/game.css" rel="stylesheet" />
+    <link href="css/dialog.css" rel="stylesheet" />
+
+    <!--required libs-->
+    <script type="text/javascript" src="js/lib/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="blockly/blockly_compressed.js"></script>
+    <script type="text/javascript" src="blockly/blocks_compressed.js"></script>
+    <script type="text/javascript" src="blockly/javascript_compressed.js"></script>
+    <script type="text/javascript" src="blockly/msg/js/zh-hans.js"></script>
+    <script type="text/javascript" src="js/draw_board.js"></script>
+</head>
+
+<body>
+
+<section class="container">
+    <div class="cont_main">
+        <div class="cont_inner_left">
+        </div>
+
+        <div class="cont_inner_right">
+            <div id="workspce_block" class="content_b"></div>
+        </div>
+    </div>
+    <xml id="toolbox" style="display: none">
+        <block type="controls_if"></block>
+        <block type="controls_repeat_ext"></block>
+        <block type="logic_compare"></block>
+        <block type="math_number"></block>
+        <block type="math_arithmetic"></block>
+        <block type="text"></block>
+        <block type="text_print"></block>
+    </xml>
+</section>
+</body>
+
+</html>
