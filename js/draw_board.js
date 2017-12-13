@@ -4,7 +4,7 @@ $(function () {
     var toolboxText = document.getElementById('toolbox').outerHTML;
     var toolboxXml = Blockly.Xml.textToDom(toolboxText);
 
-    Blockly.inject('workspce_block', {
+    var workspacePlayground = Blockly.inject('workspce_block', {
         grid: {
             spacing: 25,
             length: 3,
@@ -18,6 +18,12 @@ $(function () {
             controls: true,
             wheel: false
         }
+    });
+
+    $("#showCode").click(function(){
+        Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+        var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
+        eval(code);
     });
 
 });

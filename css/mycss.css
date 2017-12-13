@@ -59,7 +59,7 @@
 .buttonbox{
 	height:100px;
 	width:500px;
-	background: url(../img/buttonbg.jpg);
+	/*background: url(../img/buttonbg.jpg);*/
 	bottom: 0;
 	position: absolute;
 }
@@ -86,7 +86,7 @@
   	/*位置设置*/
   	position:absolute;
   	top:30px;
-  	left:80%;
+  	left:65%;
 	/*阴影设置*/
 	box-shadow: none;
 	visibility: hidden;
@@ -97,7 +97,6 @@
 .active {
 	visibility: visible !important;
 }
-
 
 /*主体的头部*/
 #innertop_name{
