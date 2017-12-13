@@ -21,6 +21,9 @@
 
     <!--costumer blocks-->
     <script type="text/javascript" src="blocks/geometry/figure.js"></script>
+
+    <!--costumer code generator -->
+    <script type="text/javascript" src="generators/javascript/figure.js"></script>
 </head>
 
 <body>
@@ -63,6 +66,12 @@
             <br>
             <br>
             <img src="img\figure\prb001.png" alt="problem" width="250" height="250" style="position:absolute; left:100px;">
+
+            <div class="buttonbox">
+                <!--<button type="button" class="btn active" id="playBtn">运行</button>-->
+                <!--<button type="button" class="btn" id="resetBtn">重置</button>-->
+                <button type="button" class="btn active" style="left: 70%; width:130px" id="showCode">显示结果</button>
+            </div>
         </div>
 
         <div class="cont_inner_right">
@@ -70,14 +79,11 @@
         </div>
     </div>
     <xml id="toolbox" style="display: none">
-        <block type="controls_if"></block>
-        <block type="controls_repeat_ext"></block>
-        <block type="logic_compare"></block>
         <block type="math_number"></block>
         <block type="math_arithmetic"></block>
-        <block type="text"></block>
-        <block type="text_print"></block>
-        <block type="circle_area"></block>
+        <block type="figure_circle_area"></block>
+        <block type="figure_square_area"></block>
+        <block type="figure_print"></block>
     </xml>
 </section>
 </body>
