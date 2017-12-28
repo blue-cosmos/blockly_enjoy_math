@@ -155,21 +155,22 @@
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0493ff', endColorstr='#35dfff');
 }
 
-.select{
-   visibility: visible;
-   border-radius:100%;
-   width:40px;
-   height:40px;
-   background-color: #537faa;
-   opacity:0.8;
-   border:none;
-   position:absolute;
-   z-index:3;
-   top:12px;
-   pointer-events:none;
-   color:#FFFFFF;
-   font-size: 17px;
-   font-family: "微软雅黑";
+.select {
+	visibility: visible;
+	border-radius: 100%;
+	width: 40px;
+	height: 40px;
+	background-color: #537faa;
+	opacity: 0.8;
+	border: none;
+	position: absolute;
+	left: 15px;
+	z-index: 3;
+	top: 12px;
+	pointer-events: none;
+	color: #FFFFFF;
+	font-size: 17px;
+	font-family: "微软雅黑";
 }
 .showcodeBox{
 	float:right;

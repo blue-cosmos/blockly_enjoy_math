@@ -13,11 +13,13 @@
 
     <!--required libs-->
     <script type="text/javascript" src="js/lib/jquery-1.11.3.min.js"></script>
+    <script src="js/lib/TweenMax.min.js"></script>
     <script type="text/javascript" src="blockly/blockly_compressed.js"></script>
     <script type="text/javascript" src="blockly/blocks_compressed.js"></script>
     <script type="text/javascript" src="blockly/javascript_compressed.js"></script>
     <script type="text/javascript" src="blockly/msg/js/zh-hans.js"></script>
     <script type="text/javascript" src="js/draw_board.js"></script>
+    <script type="text/javascript" src="js/imath.js"></script>
 
     <!--costumer blocks-->
     <script type="text/javascript" src="blocks/geometry/figure.js"></script>
@@ -32,14 +34,14 @@
 			<div id="logo_img">
 				<img src="img/imathlogo.png"  style="height:80%; margin-left:15%;margin-top:3%;"/>
 			</div>
-			<div id="nav">
-				<div class="nav-menu">
-				<a href="Selectgame.html" target="_blank">首页</a>
-				<a href="Selectgame.html" target="_blank">题库</a>
-				<a href="Selectgame.html" target="_blank">关于我们</a>
-				</div>
-				<div class="nav-current"></div>
-			</div>
+            <div id="nav">
+                <div class="nav-menu">
+                    <a href="Selectgame.html" target="_blank">首页</a>
+                    <a href="Selectgame.html" target="_blank">题库</a>
+                    <a href="Selectgame.html" target="_blank">关于我们</a>
+                </div>
+                <div class="nav-current"></div>
+            </div>
 		</div>
 		<div class="styled-select">
 			<select id="languageMenu">
@@ -48,44 +50,47 @@
 			</select>
 		</div>
 	</div>
-		
 
-<section class="container">
-    <div class="cont_main">
-        <div class="cont_inner_top">
-            <div id="innertop_name">
-                <h3>求下图中阴影部分的面积</h3></div>
-            <section class="showcodeBox">
-                <button type="button" class="showcode">显示答案</button>
-            </section>
-        </div>
-        <div class="cont_inner_left">
-            <br>
-            <p>prb001.如图，正方形ABCD的边长是4厘米，分别以B,D为圆心，以4厘米为半径在正方形内画圆。求阴影部分面积。</p>
-            <br>
-            <br>
-            <br>
-            <img src="img\figure\prb001.png" alt="problem" width="250" height="250" style="position:absolute; left:100px;">
+    <section class="container">
+        <div class="cont_main">
+            <div class="cont_inner_top">
+                <div id="innertop_name">
+                    <h3>跟我学几何</h3></div>
+                <div class="dots" id="levelLink">
+                    <button class="select">1</button>
+                </div>
+                <section class="showcodeBox">
+                    <button type="button" class="showcode">显示答案</button>
+                </section>
+            </div>
+            <div class="cont_inner_left">
+                <br>
+                <p>如图，正方形ABCD的边长是4厘米，分别以B,D为圆心，以4厘米为半径在正方形内画圆。求阴影部分面积。</p>
+                <br>
+                <br>
+                <br>
+                <img src="img\figure\prb001.png" alt="problem" width="250" height="250"
+                     style="position:absolute; left:100px;">
 
-            <div class="buttonbox">
-                <!--<button type="button" class="btn active" id="playBtn">运行</button>-->
-                <!--<button type="button" class="btn" id="resetBtn">重置</button>-->
-                <button type="button" class="btn active" style="left: 70%; width:130px" id="showCode">显示结果</button>
+                <div class="buttonbox">
+                    <!--<button type="button" class="btn active" id="playBtn">运行</button>-->
+                    <!--<button type="button" class="btn" id="resetBtn">重置</button>-->
+                    <button type="button" class="btn active" style="left: 70%; width:130px" id="showCode">显示结果</button>
+                </div>
+            </div>
+
+            <div class="cont_inner_right">
+                <div id="workspce_block" class="content_b"></div>
             </div>
         </div>
-
-        <div class="cont_inner_right">
-            <div id="workspce_block" class="content_b"></div>
-        </div>
-    </div>
-    <xml id="toolbox" style="display: none">
-        <block type="math_number"></block>
-        <block type="math_arithmetic"></block>
-        <block type="figure_circle_area"></block>
-        <block type="figure_square_area"></block>
-        <block type="figure_print"></block>
-    </xml>
-</section>
+        <xml id="toolbox" style="display: none">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <block type="figure_circle_area"></block>
+            <block type="figure_square_area"></block>
+            <block type="figure_print"></block>
+        </xml>
+    </section>
 </body>
 
 </html>
