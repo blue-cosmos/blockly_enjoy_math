@@ -2,6 +2,7 @@ var Game = {};
 
 Game.MAX_LEVEL = 5;
 Game.LEVEL = 1;
+Game.workspace = null;
 Game.text = [
     "如图，正方形边长为4厘米，求该正方形面积。",
     "如图，长方形长为4厘米，宽为3厘米，求该长方形面积。",
@@ -10,13 +11,21 @@ Game.text = [
     "如图，正方形ABCD的边长是4厘米，分别以B,D为圆心，以4厘米为半径在正方形内画圆，求阴影部分面积。"
 ];
 
+Game.blocks = [
+    ['math_number', 'math_arithmetic', 'figure_print'],
+    ['math_number', 'math_arithmetic', 'figure_print'],
+    ['math_number', 'math_arithmetic', 'figure_print'],
+    ['math_number', 'math_arithmetic', 'figure_print'],
+    ['math_number', 'math_arithmetic', 'figure_circle_area', 'figure_square_area', 'figure_print'],
+];
+
 Game.changeLevel = function () {
     Game.cur = $(this);
     Game.LEVEL = Game.cur.html();
     var prbnum = Game.LEVEL - 1;
 
-    /* 添加题目 */
-    // document.getElementsById('prb').src =  "img\figure\"+Game.cur.html()+".png";
+    /* 下一关 */
+    Game.reloadBlocks();
     var src = "img\\figure\\" + Game.LEVEL + ".png";
     $("#prb").attr("src",src);
     $("#text").html(Game.text[prbnum]);
@@ -63,12 +72,41 @@ Game.displayLevelLink = function() {
     $('.select').css('left', Game.cur.position().left+15).html(Game.LEVEL);
 }
 
+/* 根据关卡获取blocks */
+Game.getBlocksByLevel = function () {
+    var toolbox = document.getElementById('toolbox');
+    toolbox.innerHTML = "";  //清空所有block
+    var block = null;
+    var blocks = [];
+
+    // Block type needed.
+    blocks = Game.blocks[Game.LEVEL - 1];
+
+    // Create toolbox xml.
+    for(var index in blocks) {
+        block = document.createElement('block');
+        block.setAttribute('type', blocks[index]);
+        toolbox.appendChild(block);
+    }
+}
+
+/* 重新加载blocks */
+Game.reloadBlocks = function () {
+    Game.getBlocksByLevel();   //更新xml
+    Game.workspace.clear();    //清除blocks
+    var toolboxText = document.getElementById('toolbox').outerHTML;
+    var xml = Blockly.Xml.textToDom(toolboxText);
+
+    Game.workspace.updateToolbox(xml);
+}
+
 /* Blocks 初始化 */
 Game.initBlocks = function () {
+    Game.getBlocksByLevel();
     var toolboxText = document.getElementById('toolbox').outerHTML;
     var toolboxXml = Blockly.Xml.textToDom(toolboxText);
 
-    var workspacePlayground = Blockly.inject('workspce_block', {
+    Game.workspace = Blockly.inject('workspce_block', {
         grid: {
             spacing: 25,
             length: 3,
@@ -86,7 +124,7 @@ Game.initBlocks = function () {
 
     $("#showCode").click(function(){
         Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-        var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
+        var code = Blockly.JavaScript.workspaceToCode(Game.workspace);
         eval(code);
     });
 }
