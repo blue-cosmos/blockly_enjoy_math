@@ -1,13 +1,25 @@
 var Game = {};
 
-Game.MAX_LEVEL = 10;
+Game.MAX_LEVEL = 5;
 Game.LEVEL = 1;
+Game.text = [
+    "如图，正方形边长为4厘米，求该正方形面积。",
+    "如图，长方形长为4厘米，宽为3厘米，求该长方形面积。",
+    "如图，圆的半径为2厘米，求该圆面积。",
+    "如图，三角形的底为4厘米，高为3厘米，求该三角形面积。",
+    "如图，正方形ABCD的边长是4厘米，分别以B,D为圆心，以4厘米为半径在正方形内画圆，求阴影部分面积。"
+];
 
 Game.changeLevel = function () {
     Game.cur = $(this);
     Game.LEVEL = Game.cur.html();
+    var prbnum = Game.LEVEL - 1;
 
     /* 添加题目 */
+    // document.getElementsById('prb').src =  "img\figure\"+Game.cur.html()+".png";
+    var src = "img\\figure\\" + Game.LEVEL + ".png";
+    $("#prb").attr("src",src);
+    $("#text").html(Game.text[prbnum]);
 }
 
 /* 关卡显示与选择 */
