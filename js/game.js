@@ -1,23 +1,15 @@
 var Game = {};
 
+var GAMETYPE_GEOM = 0;
+var GAMETYPE_FROST = 1;
+
 Game.MAX_LEVEL = 5;
 Game.LEVEL = 1;
 Game.workspace = null;
-Game.text = [
-    "如图，正方形边长为4厘米，求该正方形面积。",
-    "如图，长方形长为4厘米，宽为3厘米，求该长方形面积。",
-    "如图，圆的半径为2厘米，求该圆面积。",
-    "如图，三角形的底为4厘米，高为3厘米，求该三角形面积。",
-    "如图，正方形ABCD的边长是4厘米，分别以B,D为圆心，以4厘米为半径在正方形内画圆，求阴影部分面积。"
-];
-
-Game.blocks = [
-    ['math_number', 'math_arithmetic', 'figure_print'],
-    ['math_number', 'math_arithmetic', 'figure_print'],
-    ['math_number', 'math_arithmetic', 'figure_print'],
-    ['math_number', 'math_arithmetic', 'figure_print'],
-    ['math_number', 'math_arithmetic', 'figure_circle_area', 'figure_square_area', 'figure_print'],
-];
+Game.bgImage = null;     //背景图片
+Game.type = GAMETYPE_GEOM;
+Game.text = null;
+Game.blocks = null;
 
 Game.changeLevel = function () {
     Game.cur = $(this);
@@ -26,7 +18,7 @@ Game.changeLevel = function () {
 
     /* 下一关 */
     Game.reloadBlocks();
-    var src = "img\\figure\\" + Game.LEVEL + ".png";
+    var src = Game.bgImage[Game.LEVEL];
     $("#prb").attr("src",src);
     $("#text").html(Game.text[prbnum]);
 }
@@ -100,6 +92,28 @@ Game.reloadBlocks = function () {
     Game.workspace.updateToolbox(xml);
 }
 
+/* GAME初始化 */
+Game.initType = function (type) {
+    Game.type = type;
+    switch (Game.type)
+    {
+        case GAMETYPE_GEOM:
+            Game.bgImage = Geom.bgImage;
+            Game.blocks = Geom.blocks;
+            Game.text = Geom.text;
+            Game.MAX_LEVEL = Geom.MAX_LEVEL;
+            Game.LEVEL = 1;
+            $("#prb").attr("src",Game.bgImage[0]);
+            $("#text").html(Game.text[0]);
+            break;
+
+        case GAMETYPE_FROST:
+
+            break;
+    }
+}
+
+
 /* Blocks 初始化 */
 Game.initBlocks = function () {
     Game.getBlocksByLevel();
@@ -129,11 +143,12 @@ Game.initBlocks = function () {
     });
 }
 
-Game.init = function() {
+Game.init = function(type) {
+    Game.initType(type);
     Game.displayLevelLink();
     Game.initBlocks();
 }
 
 $(function () {
-    Game.init();
+    Game.init(GAMETYPE_GEOM);
 })
