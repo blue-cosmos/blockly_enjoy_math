@@ -17,27 +17,6 @@ Blockly.Blocks['figure_circle_area'] = {
         this.jsonInit({
             "colour": 12,
             "message0": "圆面积",
-
-/*            "message1": "%1 %2",
-            "args1": [
-                {
-                    "type": "field_dropdown",
-                    "name": "FIELDNAME",
-                    "options": [
-                        [ "圆", "ITEM1" ],
-                        [ "正方形", "ITEM2" ]
-                    ]
-                },
-
-                {
-                    "type": "field_image",
-                    //"src": "https://www.gstatic.com/codesite/ph/images/star_on.gif",
-                    "width": 15,
-                    "height": 15,
-                    "alt": "*"
-                }
-            ],*/
-
             "message1": "半径 %1",
             "args1": [{
                 "type": "field_number",

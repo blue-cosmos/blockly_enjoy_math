@@ -1,7 +1,7 @@
 var Game = {};
 
 var GAMETYPE_GEOM = 0;
-var GAMETYPE_FROST = 1;
+var GAMETYPE_FROG = 1;
 
 Game.MAX_LEVEL = 5;
 Game.LEVEL = 1;
@@ -10,6 +10,7 @@ Game.bgImage = null;     //背景图片
 Game.type = GAMETYPE_GEOM;
 Game.text = null;
 Game.blocks = null;
+Game.execs = null;
 
 Game.changeLevel = function () {
     Game.cur = $(this);
@@ -107,12 +108,13 @@ Game.initType = function (type) {
             $("#text").html(Game.text[0]);
             break;
 
-        case GAMETYPE_FROST:
+        case GAMETYPE_FROG:
             Game.bgImage = Frog.bgImage;
             Game.blocks = Frog.blocks;
             Game.text = Frog.text;
             Game.MAX_LEVEL = Frog.MAX_LEVEL;
             Game.LEVEL = 1;
+            Game.execs = Frog.Execs;
             $("#prb").attr("src",Game.bgImage[0]);
             $("#text").html(Game.text[0]);
 
@@ -143,10 +145,12 @@ Game.initBlocks = function () {
         }
     });
 
-    $("#showCode").click(function(){
+    $("#runCode").click(function(){
+        console.log("generate code.");
         Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
         var code = Blockly.JavaScript.workspaceToCode(Game.workspace);
-        eval(code);
+        console.log(code);
+        Game.execs[Game.LEVEL-1](code);  //执行生成的代码
     });
 }
 
@@ -157,5 +161,5 @@ Game.init = function(type) {
 }
 
 $(function () {
-    Game.init(GAMETYPE_FROST);
+    Game.init(GAMETYPE_FROG);
 })
