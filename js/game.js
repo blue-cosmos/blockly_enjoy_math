@@ -108,6 +108,13 @@ Game.initType = function (type) {
             break;
 
         case GAMETYPE_FROST:
+            Game.bgImage = Frog.bgImage;
+            Game.blocks = Frog.blocks;
+            Game.text = Frog.text;
+            Game.MAX_LEVEL = Frog.MAX_LEVEL;
+            Game.LEVEL = 1;
+            $("#prb").attr("src",Game.bgImage[0]);
+            $("#text").html(Game.text[0]);
 
             break;
     }
@@ -150,5 +157,5 @@ Game.init = function(type) {
 }
 
 $(function () {
-    Game.init(GAMETYPE_GEOM);
+    Game.init(GAMETYPE_FROST);
 })
