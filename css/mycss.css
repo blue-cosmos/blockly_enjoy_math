@@ -54,6 +54,8 @@
 .game_view{
 	height:500px;
 	width:500px;
+	top:25px;
+	position:absolute;
 }
 
 .buttonbox{
@@ -111,6 +113,12 @@
 	position: relative;
 	float: left;
 	top:0;
+}
+
+/* Title字体式样 */
+.game_text{
+	color: #0493FF;
+	font-size: 16px;
 }
 
 /*关卡按钮*/

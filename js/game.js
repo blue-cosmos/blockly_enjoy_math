@@ -3,6 +3,9 @@ var Game = {};
 var GAMETYPE_GEOM = 0;
 var GAMETYPE_FROG = 1;
 
+
+Game.WIDTH = 500;
+Game.HEIGHT = Game.WIDTH;
 Game.MAX_LEVEL = 5;
 Game.LEVEL = 1;
 Game.workspace = null;
@@ -11,6 +14,19 @@ Game.type = GAMETYPE_GEOM;
 Game.text = null;
 Game.blocks = null;
 Game.execs = null;
+Game.title = null;
+
+Game.iamges = {
+    back_ground:{
+        src : null,   //路径
+        img : null    //对象
+    },
+
+    role:{
+        src : null,
+        img : null
+    }
+};
 
 Game.changeLevel = function () {
     Game.cur = $(this);
@@ -94,7 +110,10 @@ Game.reloadBlocks = function () {
 }
 
 /* GAME初始化 */
-Game.initType = function (type) {
+Game.initGame = function (type) {
+
+    Game.initDisplay();
+
     Game.type = type;
     switch (Game.type)
     {
@@ -104,8 +123,8 @@ Game.initType = function (type) {
             Game.text = Geom.text;
             Game.MAX_LEVEL = Geom.MAX_LEVEL;
             Game.LEVEL = 1;
-            $("#prb").attr("src",Game.bgImage[0]);
-            $("#text").html(Game.text[0]);
+            // $("#prb").attr("src",Game.bgImage[0]);
+            $("#game_text").html(Game.text[0]);
             break;
 
         case GAMETYPE_FROG:
@@ -114,9 +133,13 @@ Game.initType = function (type) {
             Game.text = Frog.text;
             Game.MAX_LEVEL = Frog.MAX_LEVEL;
             Game.LEVEL = 1;
+            Game.title = Frog.TITLE;
             Game.execs = Frog.Execs;
-            $("#prb").attr("src",Game.bgImage[0]);
-            $("#text").html(Game.text[0]);
+            Game.WIDTH = Frog.WIDTH;
+            Game.HEIGHT = Frog.HEIGHT;
+            $("#game_text").html(Game.text[0]);
+            Frog.context = Game.context;
+            (Game.loadImage = Frog.loadImage)();
 
             break;
     }
@@ -154,8 +177,34 @@ Game.initBlocks = function () {
     });
 }
 
+
+Game.initDisplay = function () {
+    /* title */
+    $("#game_title").html(Game.title);
+
+    /* background */
+    var visilization = document.getElementById('visilazation');
+    var canvas = document.createElement('canvas');
+    canvas.id = 'canvas';
+    canvas.className = 'canvas';
+    visilization.appendChild(canvas);
+    Game.context = canvas.getContext('2d');
+
+    // Set width and height of canvas.
+    canvas.width = Game.WIDTH;
+    canvas.height = Game.HEIGHT;
+    // img = new Image();
+    // img.src = "img\\Frog\\Frogbg.jpg";
+    // img.onload = function () {
+    //     Game.context.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT);
+    // }
+    //
+    // Game.context.globalCompositeOperation = 'source-over';
+
+}
+
 Game.init = function(type) {
-    Game.initType(type);
+    Game.initGame(type);
     Game.displayLevelLink();
     Game.initBlocks();
 }

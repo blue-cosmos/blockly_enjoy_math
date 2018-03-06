@@ -58,7 +58,7 @@
         <div class="cont_main">
             <div class="cont_inner_top">
                 <div id="innertop_name">
-                    <h3>跟我学几何</h3></div>
+                    <h3 id="game_title">跟我学几何</h3></div>
                 <div class="dots" id="levelLink">
                     <button class="select">1</button>
                 </div>
@@ -67,18 +67,16 @@
                 </section>
             </div>
             <div class="cont_inner_left">
-                <br>
-                <p id="text"></p>
-                <br>
-                <br>
-                <br>
-                <img  id="prb" alt="problem" width="250" height="250"
-                     style="position:absolute; left:100px;">
+                <p id="game_text" class="game_text"></p>
+                <div class="game_view" id="visilazation">
+                    <!--<img  id="prb" alt="problem" width="500" height="500"-->
+                          <!--style="position:absolute; left:0px;">-->
+                </div>
 
                 <div class="buttonbox">
                     <!--<button type="button" class="btn active" id="playBtn">运行</button>-->
                     <!--<button type="button" class="btn" id="resetBtn">重置</button>-->
-                    <button type="button" id="runCode" class="btn active" style="left: 70%; width:130px" >显示结果</button>
+                    <button type="button" id="runCode" class="btn active" style="left: 70%; width:130px">显示结果</button>
                 </div>
             </div>
 
