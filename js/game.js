@@ -15,6 +15,7 @@ Game.text = null;
 Game.blocks = null;
 Game.execs = null;
 Game.title = null;
+Game.button_text = null;
 
 Game.iamges = {
     back_ground:{
@@ -134,15 +135,20 @@ Game.initGame = function (type) {
             Game.MAX_LEVEL = Frog.MAX_LEVEL;
             Game.LEVEL = 1;
             Game.title = Frog.TITLE;
+            Game.button_text = Frog.button.text;
             Game.execs = Frog.Execs;
             Game.WIDTH = Frog.WIDTH;
             Game.HEIGHT = Frog.HEIGHT;
-            $("#game_text").html(Game.text[0]);
+
             Frog.context = Game.context;
             (Game.loadImage = Frog.loadImage)();
 
             break;
     }
+
+    $("#game_title").html(Game.title);
+    $("#game_text").html(Game.text[0]);
+    $("#runCode").html(Game.button_text[0]);
 }
 
 
@@ -174,13 +180,12 @@ Game.initBlocks = function () {
         var code = Blockly.JavaScript.workspaceToCode(Game.workspace);
         console.log(code);
         Game.execs[Game.LEVEL-1](code);  //执行生成的代码
+
     });
 }
 
 
 Game.initDisplay = function () {
-    /* title */
-    $("#game_title").html(Game.title);
 
     /* background */
     var visilization = document.getElementById('visilazation');
@@ -190,16 +195,8 @@ Game.initDisplay = function () {
     visilization.appendChild(canvas);
     Game.context = canvas.getContext('2d');
 
-    // Set width and height of canvas.
     canvas.width = Game.WIDTH;
     canvas.height = Game.HEIGHT;
-    // img = new Image();
-    // img.src = "img\\Frog\\Frogbg.jpg";
-    // img.onload = function () {
-    //     Game.context.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT);
-    // }
-    //
-    // Game.context.globalCompositeOperation = 'source-over';
 
 }
 
