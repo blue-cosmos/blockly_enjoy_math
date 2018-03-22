@@ -32,13 +32,13 @@ Game.iamges = {
 Game.changeLevel = function () {
     Game.cur = $(this);
     Game.LEVEL = Game.cur.html();
-    var prbnum = Game.LEVEL - 1;
 
     /* 下一关 */
     Game.reloadBlocks();
-    var src = Game.bgImage[Game.LEVEL];
-    $("#prb").attr("src",src);
-    $("#text").html(Game.text[prbnum]);
+    Game.drawImageByLevel(Game.LEVEL);
+    $("#game_title").html(Game.title);
+    $("#game_text").html(Game.text[Game.LEVEL-1]);
+    
 }
 
 /* 关卡显示与选择 */
@@ -110,6 +110,7 @@ Game.reloadBlocks = function () {
     Game.workspace.updateToolbox(xml);
 }
 
+
 /* GAME初始化 */
 Game.initGame = function (type) {
 
@@ -124,8 +125,13 @@ Game.initGame = function (type) {
             Game.text = Geom.text;
             Game.MAX_LEVEL = Geom.MAX_LEVEL;
             Game.LEVEL = 1;
-            // $("#prb").attr("src",Game.bgImage[0]);
-            $("#game_text").html(Game.text[0]);
+            Game.title = Geom.TITLE;
+            Game.button_text = Geom.button.text;
+            Game.WIDTH = Geom.WIDTH;
+            Game.HEIGHT = Geom.HEIGHT;
+            Geom.context = Game.context;
+            Game.drawImageByLevel = Geom.drawImageByLevel;
+            (Game.loadImage = Geom.loadImage)();
             break;
 
         case GAMETYPE_FROG:
@@ -139,7 +145,6 @@ Game.initGame = function (type) {
             Game.execs = Frog.Execs;
             Game.WIDTH = Frog.WIDTH;
             Game.HEIGHT = Frog.HEIGHT;
-
             Frog.context = Game.context;
             (Game.loadImage = Frog.loadImage)();
 
@@ -200,12 +205,27 @@ Game.initDisplay = function () {
 
 }
 
+Game.getType = function () {
+    var pathname = window.location.search;
+    return pathname;
+}
+
 Game.init = function(type) {
     Game.initGame(type);
     Game.displayLevelLink();
     Game.initBlocks();
 }
 
+
 $(function () {
-    Game.init(GAMETYPE_FROG);
+    var type = Game.getType();
+    console.log(type);
+    if (type.match(/frog/))
+    {
+        Game.init(GAMETYPE_FROG);
+    }
+    else if (type.match(/geom/))
+    {
+        Game.init(GAMETYPE_GEOM);
+    }
 })

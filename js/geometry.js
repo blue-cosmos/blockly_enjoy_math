@@ -24,5 +24,43 @@ Geom.bgImage = [
     "img\\figure\\5.png"
 ];
 
+Geom.button = {
+    text : ["运行", "重做"],
+    status : 0,   //取值 0 1
+};
+Geom.TITLE = "跟我学几何";
 Geom.MAX_LEVEL = 5;
+Geom.LEVEL = 1;
+Geom.bground = {};
+Geom.bground.image = [];
+Geom.bground.draw = function () {
+    Geom.context.drawImage(Geom.bground.image[Geom.LEVEL-1], 0, 0, Geom.WIDTH, Geom.HEIGHT);
+}
+Geom.context = null;  //画布
+Geom.WIDTH = 500;
+Geom.HEIGHT = Geom.WIDTH;
+
+Geom.loadImage = function () {
+    var img_num = 0;
+
+    for (var i=0; i<Geom.bgImage.length; i++)
+    {
+        Geom.bground.image[i] = new Image();
+        Geom.bground.image[i].src = Geom.bgImage[i];
+
+        /* 加载第一关 */
+        Geom.bground.image[i].onload = function () {
+            img_num++;
+            if (img_num >= Geom.bgImage.length)  //所有图片加载完毕
+            {
+                Geom.bground.draw();
+            }
+        }
+    }
+}
+
+Geom.drawImageByLevel = function (level) {
+    Geom.LEVEL = level;
+    Geom.bground.draw();
+}
 
