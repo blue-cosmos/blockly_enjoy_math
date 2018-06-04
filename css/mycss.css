@@ -216,6 +216,12 @@
 	box-shadow:  1px 1px 4px  #9E9E9E;
 }
 
+.popover
+{
+	width: auto;
+}
+
+
 
 /*@media  screen and (max-width: 1520px) {
 	.container{

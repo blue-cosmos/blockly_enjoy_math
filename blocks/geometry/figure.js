@@ -21,8 +21,8 @@ Blockly.Blocks['figure_circle_area'] = {
             "args1": [{
                 "type": "field_number",
                 "name": "Radius",
-                "variable": "item",
-                "variableTypes": [""],
+                //"variable": "item",
+                //"variableTypes": [""],
                 "check": "Number"
             }],
 
@@ -79,5 +79,7 @@ Blockly.Blocks['figure_print'] = {
         });
     }
 };
+
+
 
 

@@ -24,3 +24,25 @@ Blockly.JavaScript['figure_print'] = function(block) {
         Blockly.JavaScript.ORDER_NONE) || '\'\'';
     return 'window.alert(' + msg + ');\n';
 };
+
+Blockly.JavaScript['general_expression'] = function(block) {
+    var A = block.getFieldValue('A');
+    var B = block.getFieldValue('B');
+    var OP = block.getFieldValue('OP');
+    var result = eval(A+OP+B);
+    console.log(A+OP+B);
+    console.log(result);
+    return result+'';
+};
+
+Blockly.JavaScript['general_tri_expression'] = function(block) {
+    var A = block.getFieldValue('A');
+    var B = block.getFieldValue('B');
+    var C = block.getFieldValue('C');
+    var OP1 = block.getFieldValue('OP1');
+    var OP2 = block.getFieldValue('OP2');
+    var result = eval(A+OP1+B+OP2+C);
+    console.log(A+OP1+B+OP2+C);
+    console.log(result);
+    return result+'';
+};

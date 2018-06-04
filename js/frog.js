@@ -23,6 +23,8 @@ bgImage_SRC = [
 
 roleImage_SRC = "img\\Frog\\frog.png"
 
+Frog.popover_img = "img/Frog/frog_popover.png"
+
 Frog.MAX_LEVEL = 1;
 Frog.LEVEL = 1;
 Frog.position = 0;

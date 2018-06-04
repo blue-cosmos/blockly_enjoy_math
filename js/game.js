@@ -13,9 +13,11 @@ Game.bgImage = null;     //背景图片
 Game.type = GAMETYPE_GEOM;
 Game.text = null;
 Game.blocks = null;
-Game.execs = null;
+Game.execs = null;     //执行block代码
+Game.show = null;      //显示答案
 Game.title = null;
 Game.button_text = null;
+Game.popover_img = null;
 
 Game.iamges = {
     back_ground:{
@@ -127,8 +129,11 @@ Game.initGame = function (type) {
             Game.LEVEL = 1;
             Game.title = Geom.TITLE;
             Game.button_text = Geom.button.text;
+            Game.execs = Geom.Execs;
+            Game.show = Geom.Show;
             Game.WIDTH = Geom.WIDTH;
             Game.HEIGHT = Geom.HEIGHT;
+            Game.popover_img = Geom.popover_img;
             Geom.context = Game.context;
             Game.drawImageByLevel = Geom.drawImageByLevel;
             (Game.loadImage = Geom.loadImage)();
@@ -142,6 +147,7 @@ Game.initGame = function (type) {
             Game.LEVEL = 1;
             Game.title = Frog.TITLE;
             Game.button_text = Frog.button.text;
+            Game.popover_img = Frog.popover_img;
             Game.execs = Frog.Execs;
             Game.WIDTH = Frog.WIDTH;
             Game.HEIGHT = Frog.HEIGHT;
@@ -154,6 +160,7 @@ Game.initGame = function (type) {
     $("#game_title").html(Game.title);
     $("#game_text").html(Game.text[0]);
     $("#runCode").html(Game.button_text[0]);
+    //$("#popover_img").attr("src", Game.popover_img);
 }
 
 
@@ -186,6 +193,10 @@ Game.initBlocks = function () {
         console.log(code);
         Game.execs[Game.LEVEL-1](code);  //执行生成的代码
 
+    });
+
+    $("#showAnser").click(function(){
+        Game.show[Game.LEVEL-1]();  //提示
     });
 }
 

@@ -3,16 +3,16 @@ var Geom = {};
 Geom.text = [
     "如图，正方形边长为4厘米，求该正方形面积。",
     "如图，长方形长为4厘米，宽为3厘米，求该长方形面积。",
-    "如图，圆的半径为2厘米，求该圆面积。",
+    "如图，圆的半径为2厘米，圆周率取3，求该圆面积。",
     "如图，三角形的底为4厘米，高为3厘米，求该三角形面积。",
     "如图，正方形ABCD的边长是4厘米，分别以B,D为圆心，以4厘米为半径在正方形内画圆，求阴影部分面积。"
 ];
 
 Geom.blocks = [
-    ['math_number', 'math_arithmetic', 'figure_print'],
-    ['math_number', 'math_arithmetic', 'figure_print'],
-    ['math_number', 'math_arithmetic', 'figure_print'],
-    ['math_number', 'math_arithmetic', 'figure_print'],
+    ['general_expression'],
+    ['general_expression'],
+    ['general_tri_expression'],
+    ['general_tri_expression'],
     ['math_number', 'math_arithmetic', 'figure_circle_area', 'figure_square_area', 'figure_print'],
 ];
 
@@ -39,6 +39,7 @@ Geom.bground.draw = function () {
 Geom.context = null;  //画布
 Geom.WIDTH = 500;
 Geom.HEIGHT = Geom.WIDTH;
+Geom.popover_img = "img/figure/figure_popover.png";
 
 Geom.loadImage = function () {
     var img_num = 0;
@@ -63,4 +64,103 @@ Geom.drawImageByLevel = function (level) {
     Geom.LEVEL = level;
     Geom.bground.draw();
 }
+
+Geom.popover = function(content) {
+    var popover = document.getElementById('popover');
+    var popoverP = document.querySelectorAll('#popover p');
+    //var popoverBtn = document.querySelector('#popover button');
+    var isDisplay = false;
+
+    if (Array.isArray(content))
+    {
+        popoverP[0].textContent = content[0];
+        popoverP[1].textContent = content[1];
+        console.log("array");
+    }
+    else
+    {
+        popoverP[0].textContent = content;
+        popoverP[1].textContent = "   ";
+        console.log("not array");
+    }
+
+    popover.style.display = 'block';
+    popover.addEventListener('mouseenter', function(){
+        isDisplay = true;
+    });
+    popover.addEventListener('mouseleave', function(){
+        popover.style.display = 'none';
+    });
+    setTimeout(function() {
+        if (!isDisplay) {
+            popover.style.display = 'none';
+        }
+    }, 4000);
+};
+
+Geom.Execs = [
+    function geom_exec_level1(code) {
+        console.log("code = " + code);
+        //window.alert(code);
+        if (code == 16) {
+            Geom.popover('恭喜你，答对啦!');
+        }
+        else
+        {
+            Geom.popover('答案不对，再想想吧!');
+        }
+    },
+    function geom_exec_level2(code) {
+        console.log("code = " + code);
+        //window.alert(code);
+        if (code == 12) {
+            Geom.popover('恭喜你，答对啦!');
+        }
+        else
+        {
+            Geom.popover('答案不对，再想想吧!');
+        }
+    },
+    function geom_exec_level3(code) {
+        console.log("code = " + code);
+        //window.alert(code);
+        if (code == 12) {
+            Geom.popover('恭喜你，答对啦!');
+        }
+        else
+        {
+            Geom.popover('答案不对，再想想吧!');
+        }
+    },
+    function geom_exec_level4(code) {
+        console.log("code = " + code);
+        //window.alert(code);
+        if (code == 6) {
+            Geom.popover('恭喜你，答对啦!');
+        }
+        else
+        {
+            Geom.popover('答案不对，再想想吧!');
+        }
+    }
+];
+
+Geom.Show = [
+    function show_anser_level1() {
+        Geom.popover(['正确答案是:4×4', '正方形面积=边长×边长']);
+    },
+    function show_anser_level2() {
+        Geom.popover(['正确答案是:4×3', '长方形面积=长×宽']);
+    },
+    function show_anser_level3() {
+        Geom.popover(['正确答案是:3×2×2', '圆面积=圆周率×半径×半径']);
+    },
+    function show_anser_level4() {
+        Geom.popover(['正确答案是:4×3÷2', '三角形面积=底×高÷2']);
+    },
+    function show_anser_level5() {
+        Geom.popover(['正确答案是:4×3', '长方形面积=长×宽']);
+    }
+];
+
 

@@ -24,6 +24,7 @@
 
     <!--costumer blocks-->
     <script type="text/javascript" src="blocks/geometry/figure.js"></script>
+    <script type="text/javascript" src="blocks/geometry/general.js"></script>
     <script type="text/javascript" src="blocks/frog/frog_action.js"></script>
 
     <!--costumer code generator -->
@@ -63,7 +64,7 @@
                     <button class="select">1</button>
                 </div>
                 <section class="showcodeBox">
-                    <button type="button" class="showcode" >显示答案</button>
+                    <button type="button" class="showcode" id="showAnser">显示答案</button>
                 </section>
             </div>
             <div class="cont_inner_left">
@@ -94,9 +95,13 @@
     </section>
 
     <div id="popover" class="popover">
-        <img src="img/Frog/frog_popover.png">
-        <p>提示</p>
-        <button>降低难度</button>
+        <!--<div style="float:left">-->
+            <!--<img src="img/Frog/frog_popover.png" id="popover_img">-->
+        <!--</div>-->
+        <div style="float:right">
+            <p id="popover_text1">提示</p>
+            <p id="popover_text2">提示</p>
+        </div>
     </div>
 </body>
 
