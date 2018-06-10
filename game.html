@@ -18,18 +18,26 @@
     <script type="text/javascript" src="blockly/blocks_compressed.js"></script>
     <script type="text/javascript" src="blockly/javascript_compressed.js"></script>
     <script type="text/javascript" src="blockly/msg/js/zh-hans.js"></script>
-    <script type="text/javascript" src="js/geometry.js"></script>
-    <script type="text/javascript" src="js/frog.js"></script>
-    <script type="text/javascript" src="js/game.js"></script>
-
     <!--costumer blocks-->
     <script type="text/javascript" src="blocks/geometry/figure.js"></script>
     <script type="text/javascript" src="blocks/geometry/general.js"></script>
     <script type="text/javascript" src="blocks/frog/frog_action.js"></script>
+    <script type="text/javascript" src="blocks/car/car.js"></script>
 
     <!--costumer code generator -->
     <script type="text/javascript" src="generators/javascript/figure_generators.js"></script>
     <script type="text/javascript" src="generators/javascript/frog_generators.js"></script>
+    <script type="text/javascript" src="generators/javascript/car_generators.js"></script>
+
+    <script type="text/javascript" src="js/geometry.js"></script>
+    <script type="text/javascript" src="js/frog/frog_level2.js"></script>
+    <script type="text/javascript" src="js/frog/frog.js"></script>
+    <script type="text/javascript" src="js/car/car_level1.js"></script>
+    <script type="text/javascript" src="js/car/car_level2.js"></script>
+    <script type="text/javascript" src="js/car/car_level3.js"></script>
+    <script type="text/javascript" src="js/car/car.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+
 </head>
 
 <body>
@@ -44,7 +52,7 @@
                     <a href="Selectgame.html" target="_blank">题库</a>
                     <a href="Selectgame.html" target="_blank">关于我们</a>
                 </div>
-                <div class="nav-current"></div>
+                <!--<div class="nav-current"></div>-->
             </div>
 		</div>
 		<div class="styled-select">
@@ -64,20 +72,21 @@
                     <button class="select">1</button>
                 </div>
                 <section class="showcodeBox">
-                    <button type="button" class="showcode" id="showAnser">显示答案</button>
+                    <button type="button" class="showcode" id="showAnser">提示</button>
                 </section>
             </div>
             <div class="cont_inner_left">
                 <p id="game_text" class="game_text"></p>
-                <div class="game_view" id="visilazation">
+                <div class="game_view" id="visilazation" style="top:30px">
                     <!--<img  id="prb" alt="problem" width="500" height="500"-->
                           <!--style="position:absolute; left:0px;">-->
                 </div>
-
-                <div class="buttonbox">
-                    <!--<button type="button" class="btn active" id="playBtn">运行</button>-->
-                    <!--<button type="button" class="btn" id="resetBtn">重置</button>-->
+                </br>
+                <div class="buttonbox" style="top: 520px">
                     <button type="button" id="runCode" class="btn active" style="left: 70%; width:130px">显示结果</button>
+                </div>
+                <div>
+                    <audio src="media/car_run.wav" id="run_sound"> </audio>
                 </div>
             </div>
 
@@ -103,6 +112,7 @@
             <p id="popover_text2">提示</p>
         </div>
     </div>
+
 </body>
 
 </html>

@@ -2,6 +2,7 @@ var Game = {};
 
 var GAMETYPE_GEOM = 0;
 var GAMETYPE_FROG = 1;
+var GAMETYPE_CAR = 2;
 
 
 Game.WIDTH = 500;
@@ -152,8 +153,26 @@ Game.initGame = function (type) {
             Game.WIDTH = Frog.WIDTH;
             Game.HEIGHT = Frog.HEIGHT;
             Frog.context = Game.context;
+            Game.drawImageByLevel = Frog.drawImageByLevel;
             (Game.loadImage = Frog.loadImage)();
+            break;
 
+        case GAMETYPE_CAR:
+            //console.log("car...");
+            Game.blocks = Car.blocks;
+            Game.text = Car.text;
+            Game.MAX_LEVEL = Car.MAX_LEVEL;
+            Game.LEVEL = 1;
+            Game.title = Car.TITLE;
+            Game.button_text = Car.button;
+            Game.execs = Car.Execs;
+            Game.show = Car.Show;
+            Game.WIDTH = Car.WIDTH;
+            Game.HEIGHT = Car.HEIGHT;
+            Car.context = Game.context;
+            console.log("GAMETYPE_CAR...");
+            Game.drawImageByLevel = Car.drawImageByLevel;
+            (Game.loadImage = Car.loadImage)();
             break;
     }
 
@@ -216,6 +235,7 @@ Game.initDisplay = function () {
 
 }
 
+
 Game.getType = function () {
     var pathname = window.location.search;
     return pathname;
@@ -238,5 +258,9 @@ $(function () {
     else if (type.match(/geom/))
     {
         Game.init(GAMETYPE_GEOM);
+    }
+    else if (type.match(/car/))
+    {
+        Game.init(GAMETYPE_CAR);
     }
 })

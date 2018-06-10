@@ -122,3 +122,40 @@ Blockly.Blocks['general_tri_expression'] = {
         console.log("Create block general_tri_expression");
     }
 };
+
+
+Blockly.Blocks['general_math_arithmetic'] = {
+    init: function() {
+        this.jsonInit(// Block for basic arithmetic operator.
+            {
+                "message0": "%1 %2 %3",
+                "args0": [
+                    {
+                        "type": "input_value",
+                        "name": "A",
+                        "check": "Number"
+                    },
+                    {
+                        "type": "field_dropdown",
+                        "name": "OP1",
+                        "options": [
+                            ["%{BKY_MATH_ADDITION_SYMBOL}", "+"],
+                            ["%{BKY_MATH_SUBTRACTION_SYMBOL}", "-"],
+                            ["%{BKY_MATH_MULTIPLICATION_SYMBOL}", "*"],
+                            ["%{BKY_MATH_DIVISION_SYMBOL}", "/"],
+                            ["%{BKY_MATH_POWER_SYMBOL}", "^"]
+                        ]
+                    },
+                    {
+                        "type": "input_value",
+                        "name": "B",
+                        "check": "Number"
+                    }
+                ],
+
+                "colour": "%{BKY_MATH_HUE}",
+            }
+        );
+    }
+}
+
